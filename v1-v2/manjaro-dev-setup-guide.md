@@ -133,7 +133,7 @@ cat > ~/.config/alacritty/alacritty.toml << 'EOF'
 # Full Dracula theming will be applied in Phase 5
 
 [window]
-opacity = 0.95
+opacity = 1.00
 
 [window.padding]
 x = 10
@@ -1205,6 +1205,30 @@ asdf install haskell 9.10.3
 asdf set -u haskell 9.10.3
 ```
 
+#### Java
+
+```bash
+asdf plugin add java
+asdf install java temurin-25.0.0+36.0.LTS
+asdf set -u java temurin-25.0.0+36.0.LTS
+```
+
+#### Kotlin
+
+```bash
+asdf plugin add kotlin
+asdf install kotlin latest
+asdf set -u kotlin latest
+```
+
+#### Scala
+
+```bash
+asdf plugin add scala
+asdf install scala latest
+asdf set -u scala latest
+```
+
 #### Elixir and Erlang
 
 ```bash
@@ -1232,30 +1256,6 @@ asdf set -u ruby latest
 asdf plugin add perl
 asdf install perl latest
 asdf set -u perl latest
-```
-
-#### Java
-
-```bash
-asdf plugin add java
-asdf install java latest
-asdf set -u java latest
-```
-
-#### Kotlin
-
-```bash
-asdf plugin add kotlin
-asdf install kotlin latest
-asdf set -u kotlin latest
-```
-
-#### Scala
-
-```bash
-asdf plugin add scala
-asdf install scala latest
-asdf set -u scala latest
 ```
 
 ### 8.3 Install Go and Rust via System Package Manager
