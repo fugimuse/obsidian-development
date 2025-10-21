@@ -1173,6 +1173,12 @@ exec $SHELL
 
 ### 8.2 Install Programming Languages via ASDF
 
+#### Prerequisites
+
+```bash
+sudo pacman -S base-devel git curl ncurses zlib openssl unixodbc wxwidgets-gtk3 libxslt fop bzip2 readline sqlite tk xz m4
+```
+
 #### Python
 
 ```bash
