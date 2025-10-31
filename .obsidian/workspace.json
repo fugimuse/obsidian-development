@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "setup-guide-full/dev-setup-guide.md",
+                "file": "setup-guide-modular/02-phase-01-base-installation.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "dev-setup-guide"
+              "title": "02-phase-01-base-installation"
             }
           }
         ]
@@ -171,6 +171,10 @@
   },
   "active": "6658439d9ae07f8a",
   "lastOpenFiles": [
+    "setup-guide-modular/06-phase-05-terminal-setup-and-theming.md",
+    "setup-guide-modular/05-phase-04-base-configuration.md",
+    "setup-guide-modular/04-phase-03-setup-ssh.md",
+    "setup-guide-full/dev-setup-guide.md",
     "README.md"
   ]
 }
