@@ -3,13 +3,6 @@
 
 ### Common Issues and Fixes
 
-- ⚠️ **ASDF not loading:**  
-  Ensure your shell configuration sources the ASDF script.  
-  ```bash
-  echo '. /opt/asdf-vm/asdf.sh' >> ~/.zshrc
-  exec $SHELL
-  ```
-
 - 🧱 **Fonts not displaying correctly:**  
   Rebuild the font cache and restart applications.  
   ```bash
@@ -30,16 +23,6 @@
   # Ensure WaylandEnable=false
   sudo systemctl restart gdm
   ```
-
-- 🧰 **Starship not loading:**  
-  Make sure the initialization line exists in your `.zshrc`.  
-  ```bash
-  eval "$(starship init zsh)"
-  exec $SHELL
-  ```
-
-- 🧛 **Tmux plugins not loading:**  
-  Open tmux and press `Ctrl+A` then `I` to install plugins manually.
 
 - 💾 **Timeshift snapshots missing:**  
   Confirm Timeshift is configured for BTRFS and has enough free space.  

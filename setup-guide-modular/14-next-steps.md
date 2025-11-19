@@ -1,7 +1,7 @@
 ## 🏁 Next Steps
 🎯 **Your Environment Is Ready!**
 
-Now that your system is fully configured, here’s what you can do next:
+Now that your system is fully configured, here’s a few things you can do next:
 
 1. **Customize your workflow**
    - Tune Neovim and Helix further to match your preferences  
@@ -23,6 +23,3 @@ Now that your system is fully configured, here’s what you can do next:
 5. **Explore more**
    - Add containerized dev environments (Podman, DevPod, or Docker)  
    - Configure Terraform, Go, and Rust projects with reproducible dev containers  
-
----
-

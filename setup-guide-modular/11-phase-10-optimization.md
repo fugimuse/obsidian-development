@@ -3,16 +3,15 @@
 
 ### 10.1 Set Default Applications
 ```bash
-# Set Alacritty as the default terminal
-gsettings set org.gnome.desktop.default-applications.terminal exec 'alacritty'
+# Set Terminator as the default terminal
+gsettings set org.gnome.desktop.default-applications.terminal exec 'terminator'
 ```
 
-### 10.2 Create Development Workspace
+### 10.2 Create Development Workspaces
 ```bash
 # Organize projects by language
-mkdir -p ~/Projects/{go,rust,python,elixir,javascript,haskell,java,kotlin,scala}
+mkdir -p ~/proj/{go,rust,python,elixir,javascript,haskell,java,kotlin,scala}
 ```
-> 💡 **Tip:** Use consistent folder naming for ASDF-managed projects.
 
 ### 10.3 Optimize GNOME for Performance (Mac Mini 2012)
 - Disable unnecessary GNOME animations in **Tweaks → Appearance → Animations**  

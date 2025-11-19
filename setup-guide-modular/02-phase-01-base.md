@@ -3,9 +3,28 @@
 
 ### 1.1 Create Installation Media
 ```bash
-# On macOS (if needed)
-sudo dd if=manjaro-gnome-*.iso of=/dev/diskX bs=1m status=progress
+# On Linux
+sudo dd if=manjaro-gnome-*.iso of=/dev/sdX bs=1M status=progress
+
+# On macOS (Catalina and newer - if status is supported)
+#sudo dd if=manjaro-gnome-*.iso of=/dev/diskX bs=1m status=progress
+
+# On macOS (older versions without status support)
+# Option 1: Without progress indicator
+#sudo dd if=manjaro-gnome-*.iso of=/dev/diskX bs=1m
+
+# Option 2: With pv for progress (install with: brew install pv)
+#pv manjaro-gnome-*.iso | sudo dd of=/dev/diskX bs=1m
+
+# Option 3: Send SIGINFO signal while dd is running
+# In another terminal, run: `sudo killall -INFO dd`
+# This shows progress each time you run it
 ```
+
+> ⚠️ **Note:** Linux uses uppercase `bs=1M`, macOS uses lowercase `bs=1m`
+> ⚠️ **Important:** Replace `/dev/sdX` (Linux) or `/dev/diskX` (macOS) with your actual USB drive identifier
+> 💡 **Tip:** Find your USB drive with `lsblk` on Linux or `diskutil list` on macOS
+> 💡 **macOS progress:** Use `Ctrl+T` while dd is running to see progress, or use `pv` for continuous updates
 
 ### 1.2 Install Manjaro GNOME with BTRFS
 1. Boot from USB (**hold Option key during startup**)  
@@ -17,21 +36,25 @@ sudo dd if=manjaro-gnome-*.iso of=/dev/diskX bs=1m status=progress
 7. Reboot when installation completes  
 
 ### 1.3 Initial Settings
-🧩 **Display and Keyboard Tweaks**  
-- **Resolution:** 2048×1152 (16:9)  
-- **Keyboard Options:** Swap Esc ↔ Caps Lock; Left Alt as Ctrl, Left Ctrl as Win  
+- 🧩 **Display and Keyboard Tweaks**  
+    - **Resolution:** 2048×1152 (16:9)  
+    - **Keyboard Options:** Swap Esc ↔ Caps Lock; Left Alt as Ctrl, Left Ctrl as Win  
 
-🧩 **GNOME Extensions**  
-✅ ArcMenu ❌ Dash to Dock ✅ Dash to Panel ✅ System Monitor ✅ Workspace Indicator  
+- 🧩 **GNOME Extensions**  
+    - ✅ Apps Menu
+    - ❌ Dash to Dock
+    - ✅ Dash to Panel
+    - ✅ System Monitor
+    - ✅ Workspace Indicator  
 
-🧩 **Terminal Preferences** – Enable Unlimited Scrollback  
+- 🧩 **Terminal Preferences**
+    – Enable Unlimited Scrollback  
 
 ### 1.4 Configure Fastest Mirrors
 ```bash
-sudo pacman-mirrors --fasttrack 5 && sudo pacman -Sy
+sudo pacman-mirrors --country United_States,Canada --api --set-branch stable --protocol https
 sudo pacman -Syyu
 ```
-> 💡 **Tip:** For specific countries, use `sudo pacman-mirrors --country-list`.
 
 ### 1.5 Create Swap File
 > ⚠️ **Note:** Skip this step if you have plenty of RAM.
@@ -46,58 +69,74 @@ echo '/swapfile none swap defaults 0 0' | sudo tee -a /etc/fstab
 sudo swapon --show
 ```
 
-### 1.6 Install Nerd Fonts
-```bash
-mkdir -p ~/.local/share/fonts
-wget https://github.com/ryanoasis/nerd-fonts/releases/download/v3.0.2/Hack.zip
-unzip Hack.zip -d ~/.local/share/fonts/Hack/
-fc-cache -fv
-gsettings set org.gnome.desktop.interface monospace-font-name 'Hack Nerd Font 12'
-```
-
-### 1.7 Essential Tools
+### 1.6 Essential Tools
 ```bash
 sudo pacman -Syu
-sudo pacman -S base-devel git lazygit curl wget btrfs-progs ripgrep fd make unzip gcc xclip neovim helix obsidian bat lsd httpie alacritty
+sudo pacman -S base-devel git lazygit curl wget btrfs-progs ripgrep fd make unzip gcc xclip neovim obsidian bat lsd httpie terminator
+
+# Make Terminator the default GNOME terminal
+gsettings set org.gnome.desktop.default-applications.terminal exec '/usr/bin/terminator'
+
+# Ensure that 'Open in Terminal' functionality works
+gsettings set org.gnome.desktop.default-applications.terminal exec-arg '-x'
 ```
 > 💡 **Note:** `lsd` replaces both `ls` and `tree`.
 
-### 1.8 Minimal Alacritty Configuration
-```bash
-mkdir -p ~/.config/alacritty
-cat > ~/.config/alacritty/alacritty.toml << 'EOF'
-[window]
-opacity = 0.95
-[font]
-size = 12.0
-[font.normal]
-family = "Hack Nerd Font"
-style = "Regular"
-[colors.primary]
-background = "#1e1e1e"
-foreground = "#d4d4d4"
-EOF
-gsettings set org.gnome.desktop.default-applications.terminal exec 'alacritty'
-```
+### 1.7 Configure pamac on Manjaro
 
-### 1.9 Configure pamac on Manjaro
-```bash
-sudo cp /etc/pamac.conf /etc/pamac.conf.orig
-sudo sed -i '/^#RemoveUnrequiredDeps/s/^#//g' /etc/pamac.conf
-sudo sed -i '/^#EnableAUR/s/^#//g' /etc/pamac.conf
-sudo sed -i '/^#KeepBuiltPkgs/s/^#//g' /etc/pamac.conf
-sudo sed -i '/^#OfflineUpgrade/s/^#//g' /etc/pamac.conf
-sudo sed -i '/^#EnableFlatpak/s/^#//g' /etc/pamac.conf
-exec $SHELL
-```
+- Open Add/Remove Software | Preferences
+    - General
+        - Updates
+            - ✅ Check for updates
+            - Updates check frequency: every 6 hours
+            - ❌ Automatically download updates
+            - ✅ Upgrade the system at shutdown
+            - ❌ Hide tray icon when no update
+        - Downloads 
+            - Parallel downloads: 4
+        - Official Repositories 
+            - Use mirrors from: United_States
+        - Cache 
+            - Number of versions of each package to keep: 3
+            - ❌ Remove only the uninstalled packages
+    - Advanced
+        - Advanced
+            - ✅ Check available disk space
+            - ✅ Remove unrequired dependencies
+            - ✅ Do not check for updates when installing
+            - ❌ Enable downgrade
+        - Ignored Upgrades
+            - None
+    - Third Party
+        - AUR
+            - ✅ Enable AUR support
+            - ✅ Keep built packages
+            - ✅ Check for updates
+            - ❌ Check for development packages updates
+            - Build directory: `tmp`
+        - Flatpak
+            - ✅ Enable Flatpak support
+            - ✅ Check for updates 
 
-### 1.10 Install Basic Tools with pamac
+### 1.8 Install Basic Tools with pamac
 ```bash
 pamac search 1password
 pamac install 1password
+
+pamac search github-cli
+pamac install github-cli
 ```
 
-### 1.11 Verify BTRFS Setup
+### 1.9 Install NoMachine for Remote Access
+```bash
+pamac install nomachine
+sudo systemctl enable nxserver
+sudo systemctl start nxserver
+```
+> 💡 **Repo:** https://github.com/fmconfig/nomachine
+> 🔐 This allows remote desktop access from iPad, laptops, etc.
+
+### 1.10 Verify BTRFS Setup
 ```bash
 df -T /
 sudo btrfs subvolume list /

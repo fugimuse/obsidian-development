@@ -29,4 +29,3 @@ _A fully themed Dracula-powered developer environment for Mac Mini (2012)_
 - USB drive for installation media  
 
 ---
-

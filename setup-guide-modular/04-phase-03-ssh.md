@@ -13,15 +13,8 @@ cat ~/.ssh/mefm_ed25519.pub
 Copy the displayed public key to your GitHub, GitLab, and Bitbucket SSH-key settings.
 
 ### 3.3 Configure SSH for Named Host
-```bash
-cat >> ~/.ssh/config << "EOF"
-Host mefm.github.com
-    HostName github.com
-    User fugimuse
-    IdentityFile ~/.ssh/mefm_ed25519
-    IdentitiesOnly yes
-EOF
-```
+
+> `~/.ssh/config` will be symlinked when `~/.config/dotfiles/setup_links` is run.
 
 ---
 

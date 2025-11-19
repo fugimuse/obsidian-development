@@ -27,6 +27,14 @@ code --install-extension scala-lang.scala
 code --install-extension dracula-theme.theme-dracula
 ```
 
+### 9.3 Install Zed Text Editor
+```bash
+# Install Zed text editor
+curl -f https://zed.dev/install.sh | sh
+
+
+```
+
 > 💡 **Tip:** Launch VS Code and open the Command Palette → “Reload Window” after installing extensions to apply the Dracula theme.
 
 ---

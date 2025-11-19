@@ -7,13 +7,6 @@ python --version
 go version
 rustc --version
 node --version
-deno --version
-bun --version
-ghc --version
-elixir --version
-erl -version
-ruby --version
-perl --version
 java --version
 kotlin -version
 scala -version
@@ -22,8 +15,8 @@ scala -version
 ### 11.2 Test Editors
 ```bash
 nvim --version
-hx --version
 code --version
+zed --version
 ```
 
 ### 11.3 Verify X11 Configuration
@@ -41,8 +34,6 @@ sudo timeshift --list
 ### 11.5 Test Theming and CLI Tools
 ```bash
 # Terminals
-alacritty
-tmux
 terminator
 
 # Tools
@@ -51,5 +42,7 @@ lazygit
 lsd -la
 http https://httpbin.org/get
 ```
-> ✅ Confirm all Dracula colors appear correctly and your prompt loads with Starship.
+> ✅ Confirm all Dracula colors appear correctly.
+
+---
 
