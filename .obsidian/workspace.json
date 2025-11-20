@@ -4,11 +4,11 @@
     "type": "split",
     "children": [
       {
-        "id": "4731cb017d923dee",
+        "id": "78b06ddc6d8fd952",
         "type": "tabs",
         "children": [
           {
-            "id": "1be0e85644c8e0a4",
+            "id": "6a0ba92dc67c74c1",
             "type": "leaf",
             "state": {
               "type": "empty",
@@ -165,8 +165,10 @@
       "bases:Create new base": false
     }
   },
-  "active": "1be0e85644c8e0a4",
+  "active": "95e7ee0f456c2017",
   "lastOpenFiles": [
+    "setup-guide-modular/02-phase-01-base.md",
+    "setup-guide-modular/01-intro.md",
     "README.md",
     "setup-guide-modular/15-summary.md",
     "setup-guide-modular/14-next-steps.md",
